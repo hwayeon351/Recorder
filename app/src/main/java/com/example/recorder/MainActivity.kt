@@ -11,14 +11,13 @@ class MainActivity : AppCompatActivity() {
     private val recordTimeTextView: CountUpTextView by lazy {
         findViewById(R.id.recordTimeTextView)
     }
-
     private val soundVisualizerView: SoundVisualizerView by lazy {
         findViewById(R.id.soundVisualizerView)
     }
     private val resetButton: Button by lazy {
         findViewById(R.id.resetButton)
     }
-    private val recordButton: RecordButton by lazy{
+    private val recordButton: RecordButton by lazy {
         findViewById(R.id.recordButton)
     }
     private val requiredPermissions = arrayOf(android.Manifest.permission.RECORD_AUDIO)
@@ -54,9 +53,9 @@ class MainActivity : AppCompatActivity() {
 
         val audioRecordPermissionGranted =
             requestCode == REQUEST_RECORD_AUDIO_PERMISSION &&
-                grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED
+                    grantResults.firstOrNull() == PackageManager.PERMISSION_GRANTED
 
-        if(!audioRecordPermissionGranted) {
+        if (!audioRecordPermissionGranted) {
             finish()
         }
     }
@@ -81,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         recordButton.setOnClickListener {
-            when(state) {
+            when (state) {
                 State.BEFORE_RECORDING -> {
                     startRecording()
                 }
@@ -117,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         state = State.ON_RECORDING
     }
 
-    private fun stopRecording(){
+    private fun stopRecording() {
         recorder?.run {
             stop()
             release()

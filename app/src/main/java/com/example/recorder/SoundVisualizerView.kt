@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import kotlin.random.Random
 
-class SoundVisualizerView (
+class SoundVisualizerView(
     context: Context,
     attrs: AttributeSet? = null
 ) : View(context, attrs) {
@@ -29,7 +29,7 @@ class SoundVisualizerView (
 
     private val visualizeRepeatAction: Runnable = object : Runnable {
         override fun run() {
-            if(!isReplaying){
+            if (!isReplaying) {
                 val currentAmplitude = onRequestCurrentAmplitude?.invoke() ?: 0
                 drawingAmplitudes = listOf(currentAmplitude) + drawingAmplitudes
             } else {
@@ -58,26 +58,26 @@ class SoundVisualizerView (
 
         drawingAmplitudes
             .let { amplitues ->
-                if(isReplaying) {
+                if (isReplaying) {
                     amplitues.takeLast(replayingPosition)
                 } else {
                     amplitues
                 }
             }
             .forEach { amplitude ->
-            val lineLength = amplitude / MAX_AMPLITUDE * drawingHeight * 0.8F
+                val lineLength = amplitude / MAX_AMPLITUDE * drawingHeight * 0.8F
 
-            offsetX -= LINE_SPACE
-            if(offsetX < 0) return@forEach
+                offsetX -= LINE_SPACE
+                if (offsetX < 0) return@forEach
 
-            canvas.drawLine(
-                offsetX,
-                centerY - lineLength / 2F,
-                offsetX,
-                centerY + lineLength / 2F,
-                amplitudePaint
-            )
-        }
+                canvas.drawLine(
+                    offsetX,
+                    centerY - lineLength / 2F,
+                    offsetX,
+                    centerY + lineLength / 2F,
+                    amplitudePaint
+                )
+            }
     }
 
     fun startVisualizing(isReplaying: Boolean) {

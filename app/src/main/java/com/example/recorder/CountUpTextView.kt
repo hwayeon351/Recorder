@@ -12,10 +12,10 @@ class CountUpTextView(
 
     private var startTimeStamp: Long = 0L
 
-    private val countUpAction: Runnable = object: Runnable {
+    private val countUpAction: Runnable = object : Runnable {
         override fun run() {
             val currentTimeStamp = SystemClock.elapsedRealtime()
-            val countTimeSeconds = ((currentTimeStamp - startTimeStamp)/1000L).toInt()
+            val countTimeSeconds = ((currentTimeStamp - startTimeStamp) / 1000L).toInt()
             updateCountTime(countTimeSeconds)
 
             handler?.postDelayed(this, 1000L)
